@@ -1,0 +1,10 @@
+Counter without modify cassandra.yml:
+
+access cassandra container bash console:
+docker exec -it cassandra1 bash
+
+Run command:
+
+cqlsh -e "copy keyspace.table_name (first_partition_key_name) to '/dev/null'" | sed -n 5p | sed 's/ .*//'
+
+sadeemlake.rawdata rows= 33128506

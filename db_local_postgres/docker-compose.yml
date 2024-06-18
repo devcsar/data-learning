@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+    postgres:
+        image: postgres:15
+        container_name: local_postgres
+        environment:
+            - POSTGRES_USER=devcsar
+            - POSTGRES_PASSWORD=devcsar
+        volumes:
+            - postgres-db-volume:/var/lib/postgresql/data
+            - ./local_files:/home/local_files
+        ports:
+            - 5432:5432
+        networks:
+            - postgres-db-network
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: 'test@test.com'
+            PGADMIN_DEFAULT_PASSWORD: 'test'
+        ports:
+            - 16543:80
+        volumes:
+            - ./servers.json:/pgadmin4/servers.json
+        networks:
+            - postgres-db-network
+
+volumes:
+    postgres-db-volume:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: ./data
+
+networks:
+    postgres-db-network:
+        driver: bridge

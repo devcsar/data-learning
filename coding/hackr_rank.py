@@ -33,7 +33,7 @@
 # data = [[i + 1 +j for j in range(2)] for i in range(2)]
 
 # print(data)
-nums = [23, 12, 21, 4, 23 , 56, 12]
+nums = [23, 3, 6, 21,  12, 21, 4, 23 , 56, 12]
 
 target = 100
 
